@@ -1,10 +1,15 @@
 <?php  
 namespace module{
 
-	function bootstrap(&$di, $modulesDir, $name){
-		$moduleDefinition = include_once($modulesDir.DIRECTORY_SEPARATOR.$name.DIRECTORY_SEPARATOR.$name.'.php');
-		$moduleDis = $moduleDefinition($di);
-		$di[$name] = $moduleDis;
+	/**
+	* TODO Add Lazy loading
+	*/
+	function load(&$di, $name, $moduleDefinition) {
+		$di[$name] = [
+			'definition' => $moduleDefinition;
+			'module' => null,
+			'isInited' => false
+		];
 	}
 
 	function define($moduleDependencies, $moduleDefinition){
@@ -17,7 +22,9 @@ namespace module{
 				if (!array_key_exists($dependencieName, $di)){
 					throw new \Exception("Module {$dependencieName} is not defined");
 				}
-				$dependencies[] = $di[$dependencieName];
+				
+				bootsrap($di, $di[$dependencieName]);
+				$dependencies[] = $di[$dependencieName]['module'];
 			}
 			return call_user_func_array($moduleDefinition, $dependencies);
 		};
@@ -25,15 +32,36 @@ namespace module{
 		return $definer;
 	}
 
+	function bootstrapAll(&$di) {
+		foreach ($di as &$moduleData) {
+			bootsrap($di, $moduleData);
+		}
+
+	}
+
+	function bootsrap($di, &$moduleData){
+		if ($moduleData['isInited'] === false){
+			$moduleData['module'] = $moduleData['definition']($di);
+			$moduleData['isInited'] = true;
+		}
+	}
+
 }
+
 namespace {
-	
-	$appConfig = require_once(__DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'app.cfg.php');
+
+
+	$configPath = __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'app.cfg.php';
+	$appConfig = require_once($configPath);
 	$di = [];
+
 	$modulesDir = __DIR__.DIRECTORY_SEPARATOR.'modules';
 
 	foreach ($appConfig['modules'] as $moduleName) {
-		\module\bootstrap($di, $modulesDir ,$moduleName);
+		$moduleDefinition = include_once($modulesDir.DIRECTORY_SEPARATOR.$moduleName.DIRECTORY_SEPARATOR.$moduleName.'.php');
+		\module\load($di, $moduleName, $moduleDefinition);
 	}
+
+	\module\bootstrapAll($di);
 
 }
