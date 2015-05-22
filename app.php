@@ -4,11 +4,21 @@ namespace module{
 	/**
 	* TODO Add Lazy loading
 	*/
-	function load(&$di, $name, $moduleDefinition) {
+	function load(&$di, $name, $path) {
 		$di[$name] = [
-			'definition' => $moduleDefinition;
+			'path' => $path,
+			'definition' => null,
 			'module' => null,
 			'isInited' => false
+		];
+	}
+
+	function addInitedModule(&$di, $name, $module) {
+		$di[$name] = [
+			'path' => null,
+			'definition' => null,
+			'module' => $module,
+			'isInited' => true
 		];
 	}
 
@@ -41,27 +51,27 @@ namespace module{
 
 	function bootsrap($di, &$moduleData){
 		if ($moduleData['isInited'] === false){
+			$moduleData['definition'] = include_once($moduleData['path']);
 			$moduleData['module'] = $moduleData['definition']($di);
 			$moduleData['isInited'] = true;
 		}
+	}
+
+	function getModuleFilePath($modulesDir, $moduleName) {
+		return $modulesDir.DIRECTORY_SEPARATOR.
+		$moduleName.DIRECTORY_SEPARATOR.
+		$moduleName.'.php';
 	}
 
 }
 
 namespace {
 
-
 	$configPath = __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'app.cfg.php';
-	$appConfig = require_once($configPath);
 	$di = [];
-
 	$modulesDir = __DIR__.DIRECTORY_SEPARATOR.'modules';
-
-	foreach ($appConfig['modules'] as $moduleName) {
-		$moduleDefinition = include_once($modulesDir.DIRECTORY_SEPARATOR.$moduleName.DIRECTORY_SEPARATOR.$moduleName.'.php');
-		\module\load($di, $moduleName, $moduleDefinition);
-	}
-
+	\module\load($di, 'config', \module\getModuleFilePath($modulesDir, 'config'));
+	\module\load($di, 'application', \module\getModuleFilePath($modulesDir, 'application'));
 	\module\bootstrapAll($di);
 
 }
