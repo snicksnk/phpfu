@@ -4,6 +4,10 @@ return array(
 	'modules-dir' => 'modules',
 	'modules' => array(
 		'goods',
-		'welcome'
-	)
+		'welcome' => [
+			'action-controllers' => [
+				'index'
+			]
+		],
+	),
 );

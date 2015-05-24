@@ -51,27 +51,67 @@ namespace module{
 
 	function bootsrap($di, &$moduleData){
 		if ($moduleData['isInited'] === false){
-			$moduleData['definition'] = include_once($moduleData['path']);
+			$moduleData['definition'] = include($moduleData['path']);
+
+			if (!is_callable($moduleData['definition'])){
+				throw new \Exception("Can't init module.");
+			}
 			$moduleData['module'] = $moduleData['definition']($di);
 			$moduleData['isInited'] = true;
 		}
 	}
 
-	function getModuleFilePath($modulesDir, $moduleName) {
+	function getModuleFilePath($modulesDir, $moduleName, $parentModule = null) {
+		
+
+		$nameParts = explode('-', $moduleName);
+
+		if (count($nameParts) > 1){
+			$type = $nameParts[count($nameParts)-1];
+		} else {
+			$type = 'module';
+		}
+		
+		if ($type !== 'module'){
+			$typeDir = $type.DIRECTORY_SEPARATOR;
+		} else {
+			$typeDir = DIRECTORY_SEPARATOR;
+		}
+
+		if ($parentModule){
+			$parentModuleDir = $modulesDir.DIRECTORY_SEPARATOR.$parentModule;
+			return $parentModuleDir.DIRECTORY_SEPARATOR.$typeDir.$moduleName.'.php';
+		}
+
 		return $modulesDir.DIRECTORY_SEPARATOR.
-		$moduleName.DIRECTORY_SEPARATOR.
-		$moduleName.'.php';
+		$moduleName.$typeDir.
+		$moduleName.'-'.$type.'.php';
 	}
+
+	function get($di, $moduleName){
+		bootsrap($di, $di[$moduleName]);
+		return $di[$moduleName]['module'];
+	}
+
 
 }
 
 namespace {
 
+	define('APP_ROOT', __DIR__);
+
 	$configPath = __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'app.cfg.php';
 	$di = [];
-	$modulesDir = __DIR__.DIRECTORY_SEPARATOR.'modules';
+	$modulesDir = __DIR__.DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'snicksnk'.
+	DIRECTORY_SEPARATOR.'phpfu'.DIRECTORY_SEPARATOR;
 	\module\load($di, 'config', \module\getModuleFilePath($modulesDir, 'config'));
 	\module\load($di, 'application', \module\getModuleFilePath($modulesDir, 'application'));
+	\module\load($di, 'router', \module\getModuleFilePath($modulesDir, 'router'));
+	
+
+
 	\module\bootstrapAll($di);
+
+
 
 }

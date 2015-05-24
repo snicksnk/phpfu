@@ -1,6 +1,6 @@
 <?php 
 return module\define([], function(){
-	$configPath = 'config'.DIRECTORY_SEPARATOR.'app.cfg.php';
+	$configPath = APP_ROOT.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'app.cfg.php';
 	$appConfig = require_once($configPath);
 
 
