@@ -37,9 +37,9 @@ return module\define(['config', 'router'], function($config, $router){
 
 	$router = \module\get($di,'router');
 
-	$controller = $router($di);
+	$result = $router($di);
 
-	echo $controller();
+	echo $result;
 
 	return function() use ($appConfig){
 		throw new \Exception('Application module is not callable');

@@ -26,6 +26,6 @@ return module\define(['config'], function($config){
 		$currentController = module\get($di, $controllerModuleName);
 	
 
-		return $currentController;
+		return $currentController($action);
 	};
 });

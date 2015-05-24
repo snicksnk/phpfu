@@ -36,6 +36,11 @@ namespace module{
 				bootsrap($di, $di[$dependencieName]);
 				$dependencies[] = $di[$dependencieName]['module'];
 			}
+			if (!is_callable($moduleDefinition)){
+				var_dump($moduleData);
+				throw new \Exception("Can't init module.");
+			}
+
 			return call_user_func_array($moduleDefinition, $dependencies);
 		};
 
@@ -54,6 +59,7 @@ namespace module{
 			$moduleData['definition'] = include($moduleData['path']);
 
 			if (!is_callable($moduleData['definition'])){
+				var_dump($moduleData);
 				throw new \Exception("Can't init module.");
 			}
 			$moduleData['module'] = $moduleData['definition']($di);

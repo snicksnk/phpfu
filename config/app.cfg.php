@@ -9,5 +9,10 @@ return array(
 				'index'
 			]
 		],
+		'admin' => [
+			'action-controllers' => [
+				'index'
+			]
+		]
 	),
 );
