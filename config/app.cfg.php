@@ -13,6 +13,10 @@ return array(
 			'action-controllers' => [
 				'index'
 			]
-		]
+		],
+		'layout'
 	),
+	'view' => [
+		'default-layout' => 'modules'.DIRECTORY_SEPARATOR.'welcome'.DIRECTORY_SEPARATOR.'view'.DIRECTORY_SEPARATOR.'layout.phtml'
+	]
 );

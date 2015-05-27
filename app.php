@@ -56,11 +56,11 @@ namespace module{
 
 	function bootsrap($di, &$moduleData){
 		if ($moduleData['isInited'] === false){
-			$moduleData['definition'] = include($moduleData['path']);
-
 			if (!is_callable($moduleData['definition'])){
-				var_dump($moduleData);
-				throw new \Exception("Can't init module.");
+				$moduleData['definition'] = include($moduleData['path']);
+			}
+			if (!is_callable($moduleData['definition'])){
+				throw new \Exception("Can't init module.\n".print_r($moduleData, true));
 			}
 			$moduleData['module'] = $moduleData['definition']($di);
 			$moduleData['isInited'] = true;

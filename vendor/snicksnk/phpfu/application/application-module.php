@@ -7,13 +7,11 @@ return module\define(['config', 'router'], function($config, $router){
 	$di = [];
 
 
-
 	\module\addInitedModule($di, 'config', $config);
 	\module\addInitedModule($di, 'router', $router);
 
-	
-
 	foreach ($appConfig['modules'] as $moduleNameOrIndex => $moduleNameOrConfig){
+
 		if (is_array($moduleNameOrConfig)){
 			$moduleName = $moduleNameOrIndex;
 			$moduleConfig = $moduleNameOrConfig;
@@ -22,7 +20,12 @@ return module\define(['config', 'router'], function($config, $router){
 			$moduleConfig = [];
 		}
 
+
+
 		\module\load($di, $moduleName, \module\getModuleFilePath($appConfig['modules-dir'], $moduleName));
+
+
+
 
 		if (array_key_exists('action-controllers', $moduleConfig)){
 			foreach ($moduleConfig['action-controllers'] as $controllerName) {
@@ -35,7 +38,7 @@ return module\define(['config', 'router'], function($config, $router){
 
 	\module\bootstrapAll($di);
 
-	$router = \module\get($di,'router');
+
 
 	$result = $router($di);
 

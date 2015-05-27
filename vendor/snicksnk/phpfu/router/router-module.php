@@ -1,18 +1,18 @@
 <?php 
 return module\define(['config'], function($config){
-
-	function getParam($index, $defaultValue, $sourceArray){
+	//TODO File required twise
+	$getParam = function ($index, $defaultValue, $sourceArray){
 		if (array_key_exists($index, $sourceArray)){
 			return $sourceArray[$index];
 		} else {
 			return $defaultValue;
 		}
-	}	
+	};	
 
-	return function($di){
-		$module = getParam('module', 'welcome', $_GET);
-		$controller = getParam('controller', 'index', $_GET);
-		$action = getParam('action', 'index', $_GET);
+	return function($di) use ($getParam){
+		$module = $getParam('module', 'welcome', $_GET);
+		$controller = $getParam('controller', 'index', $_GET);
+		$action = $getParam('action', 'index', $_GET);
 
 		$controllerModuleName = $module.'-'.$controller.'-controller';
 

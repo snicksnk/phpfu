@@ -1,0 +1,29 @@
+<?php
+$nodes = array(
+    array('node_id' => 1, 'parent_id' => null, 'title' => 'Node 1'),
+    array('node_id' => 2, 'parent_id' => 1, 'title' => 'Node 2'),
+    array('node_id' => 3, 'parent_id' => 2, 'title' => 'Node 3'),
+    array('node_id' => 4, 'parent_id' => 2, 'title' => 'Node 4'),
+    array('node_id' => 5, 'parent_id' => null, 'title' => 'Node 5'),
+    array('node_id' => 6, 'parent_id' => null, 'title' => 'Node 6'),
+    array('node_id' => 7, 'parent_id' => null, 'title' => 'Node 7'),
+);
+
+
+
+
+foreach ($nodes as $pKey => $parentNode) {
+    if (!array_key_exists('childrens', $parentNode)){
+        $parentNode['childrens'] = [];
+    }  
+    foreach($nodes as $key => $node){
+        if ($node['parent_id'] === $parentNode['parent_id']){
+            $parentNode['childrens'][] = $node; 
+            unset($nodes[$key]);
+        }
+        $nodes[$pKey] = $parentNode;
+    }
+    
+}
+
+var_dump($nodes);
