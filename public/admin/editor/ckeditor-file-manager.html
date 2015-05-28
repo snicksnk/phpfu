@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Ajex File Manager for CKEditor</title>
+	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="AjexFileManager/ajex.js"></script>
+</head>
+<body>
+
+<textarea cols="80" id="editor1" name="editor1" rows="10">This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://www.fckeditor.net/"&gt;CKEditor&lt;/a&gt;.</textarea>
+<textarea cols="80" id="editor2" name="editor2" rows="10">This is some &lt;strong&gt;sample text&lt;/strong&gt;. You are using &lt;a href="http://www.fckeditor.net/"&gt;CKEditor&lt;/a&gt;.</textarea>
+
+
+<script type="text/javascript">
+var ckeditor1 = CKEDITOR.replace('editor1');
+var ckeditor2 = CKEDITOR.replace('editor2');
+
+AjexFileManager.init({returnTo: 'ckeditor', editor: ckeditor1});
+AjexFileManager.init({returnTo: 'ckeditor', editor: ckeditor2});
+
+
+//	If you're having trouble with your style, try to specify the "path"
+/*
+AjexFileManager.init({returnTo: 'ckeditor', editor: ckeditor1, path: '/AjexFileManager/'});
+AjexFileManager.init({returnTo: 'ckeditor', editor: ckeditor2, path: '/AjexFileManager/'});
+*/
+
+
+/*
+
+AjexFileManager.init({
+	returnTo: '', // [ckeditor, tinymce, function] default=ckeditor
+
+	path: '/path/to/AjexFileManager/',
+	editor: '',			// object ckEditor
+	width: '', 			// default=1000
+	height: '', 			// default=660
+	skin: '', 			// [dark, light], default=dark
+	lang: '', 			// default=ru
+	connector: '', 		// default=php,
+	contextmenu: true		// [true, false], default=true
+});
+
+*/
+</script>
