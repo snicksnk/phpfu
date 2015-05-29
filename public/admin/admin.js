@@ -2,7 +2,6 @@ angular.module('editableInPlace', ['ui.tinymce'])
 .controller("adminEditor", function($scope, $rootScope, editor){
 	$scope.blockContent = '';
 	$scope.editor = editor;
-	console.log(editor);
 
 	$scope.showModal = false;
 	$rootScope.$on("startEdit", function(){
@@ -25,6 +24,7 @@ angular.module('editableInPlace', ['ui.tinymce'])
 	$scope.save = function(){
 		var html = $scope.blockContent;
 		editor.save(html);
+		$scope.close();
 	};
 
 	$scope.close = function(){
@@ -40,7 +40,6 @@ angular.module('editableInPlace', ['ui.tinymce'])
 	Editor.prototype.startEdit = function(element){
 		this.html = element.innerHTML;
 		this.element = element;
-		console.log(this);
 		$rootScope.$broadcast("startEdit");
 	}
 
@@ -58,6 +57,14 @@ angular.module('editableInPlace', ['ui.tinymce'])
 })
 .directive("isEditable", function(editor){
 	return function(scope,element,attrs){
+		var prevVal = $(element).css("border");
+		$(element).on("mouseover", function(){
+			$(this).css("border","1px solid cyan");
+		});
+		$(element).on("mouseout", function(){
+		
+			$(this).css("border", prevVal);
+		});
 		$(element).click(function(){
 			editor.startEdit(element[0]);
 		})
