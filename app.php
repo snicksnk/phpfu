@@ -94,6 +94,10 @@ namespace module{
 		$moduleName.'-'.$type.'.php';
 	}
 
+	function childModules($modules){
+		
+	}
+
 	function get($di, $moduleName){
 		bootsrap($di, $di[$moduleName]);
 		return $di[$moduleName]['module'];

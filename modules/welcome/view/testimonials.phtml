@@ -7,6 +7,11 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
     <div class="service-box std">
         <div class="container">
                     <h1 class="page-title">Отзывы</h1>
+        
+        <div is-editable = "testimonials">
+            <?=$blocks('testimonials')?>
+        </div>
+
         </div>
     </div>
 

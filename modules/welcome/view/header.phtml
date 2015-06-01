@@ -49,13 +49,17 @@
             }
         });
     </script>
-
+<?php             
+if ($isAdmin):
+?>
     <script type="text/javascript" src="bower_components/tinymce/tinymce.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
     <script type="text/javascript" src="admin/admin.js"></script>
     <script type="text/javascript" src="admin/editor/AjexFileManager/ajex.js"></script>
-
+<?php 
+endif;
+?>
 
 
 
@@ -85,8 +89,11 @@
     <![endif]-->
 </head>
 <body>
-
+<?php             
+if ($isAdmin):
+?>
 <div class="modal fade in show " ng-show = "showModal" id="editModal" ng-controller="adminEditor">
+
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -108,13 +115,20 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+<?php
+endif;
+?>
 
 <!--header-->
 <div class="head_box">
     <div class="container">
         <div class="box1 clearfix">
             <p>&nbsp;</p>
-
+<?php             
+if ($isAdmin){
+    echo '<a href="index.php?module=admin&controller=index&action=logout">Выход</a>';
+}
+?>
             <p class="tel">&nbsp;</p>
         </div>
     </div>

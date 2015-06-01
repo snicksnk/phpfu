@@ -1,0 +1,74 @@
+<?php
+$currentPage = 'index'  ; 
+include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
+?>
+<!--content-->
+<div class="content">
+    <div class="service-box std">
+        <div class="container">
+                    <h1 class="page-title" >Комплексное лечение хронического простатита</h1>
+        
+        <div is-editable="prosta-content">
+            <?=$blocks('prosta-content')?>
+        </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--footer-->
+<footer>
+    <div class="box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 maxheight2 wow fadeInUp">
+                    <p class="title">Адрес 1</p>
+                    <ul class="list1">
+                        <li>Городская поликлиника № 5,<br/>
+                            м.Сухаревская,  Даев пер., д. 3,<br/>
+                            6 этаж, кабинет 606
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 maxheight2 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="title">Адрес 2</p>
+                    <ul class="list1">
+                        <li>"Александра Мед" Улица<br/>
+                            Кастанаевская, д.9, к.1<br/>
+                            Ближайшие станции метро:<br/>
+                            Багратионовская<br/>
+                            Филевский парк<br/>
+                            +74952220514<br/>
+                            Запись по телефону</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-5 col-md-4 col-sm-6 col-lg-offset-1 maxheight2 wow fadeInUp" data-wow-delay="0.3s">
+                    <figure class="pull-left"><img src="img/logo-footer.png" alt=""></figure>
+                    <div class="txt">
+                        <p class="title">
+                            Чакирян Микаел Ашотович
+                        </p>
+
+                        <p>Врач уролог-андролог<br/>
+                            +79266776879<br/>
+                            <a href="mailto:dr.chakiryan@yandex.ru">dr.chakiryan@yandex.ru</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box1">
+        <div class="container">
+            <p class="wow fadeInUp">Чакирян Микаел Ашотович &copy; <em id="copyright-year"></em>. <a
+                    href="index-5.html">Все права защищены</a></p>
+        </div>
+    </div>
+</footer>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/tm-scripts.js"></script>
+
+</body>
+</html>

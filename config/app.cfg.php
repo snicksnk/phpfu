@@ -3,6 +3,7 @@
 return array(
 	'modules-dir' => 'modules',
 	'modules' => array(
+		'storage',
 		'goods',
 		'welcome' => [
 			'action-controllers' => [

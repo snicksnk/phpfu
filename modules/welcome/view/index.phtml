@@ -5,9 +5,10 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
 <div class="slider">
     <div class="camera_wrap">
         <div data-src="img/main-pic1.jpg">
-            <div class="camera-caption fadeIn"><p class="description"><span>Ч</span>акирян <span>М</span>икаел <span>А</span>шотович</p>
-
-                <p class="title">Решение любых урологических вопросов</p></div>
+            <div class="camera-caption fadeIn">
+                <p class="description"><span>Ч</span>акирян <span>М</span>икаел <span>А</span>шотович</p>
+                <p class="title">Решение любых урологических вопросов</p>
+            </div>
         </div>
     </div>
 </div>
@@ -19,36 +20,43 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
                 <div class="col-lg-6">
                     <ul class="list2">
                         <li class="wow fadeInLeft">
-                            <strong class="fa fa-medkit"></strong>
 
-                            <div class="extra-wrap">
-                                <p class="title">Комплексное лечение<br>хронического простатита</p>
-                            </div>
+                            <a href="index.php?action=prostatitis">
+                                <strong class="fa fa-medkit"></strong>
+                                <div class="extra-wrap">
+                                    <p class="title">Комплексное лечение<br>хронического простатита</p>
+                                
+                                </div>
+                            </a>
                         </li>
                         <li class="wow fadeInLeft" data-wow-delay="0.1s">
-                            <strong class="fa fa-heart-o"></strong>
+                            <a href="index.php?action=disfunc">
+                                <strong class="fa fa-heart-o"></strong>
 
-                            <div class="extra-wrap">
-                                <p class="title">Лечение<br>эректильной дисфункции</p>
-                            </div>
+                                <div class="extra-wrap">
+                                    <p class="title">Лечение<br>эректильной дисфункции</p>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-6">
                     <ul class="list2">
                         <li class="wow fadeInRight">
-                            <strong class="fa fa-user-md"></strong>
-
-                            <div class="extra-wrap">
-                                <p class="title">Лечение мужского<br>бесплодия </p>
-                            </div>
+                            <a href="index.php?action=infertitly">
+                                <strong class="fa fa-user-md"></strong>
+                                <div class="extra-wrap">
+                                    <p class="title">Лечение мужского<br>бесплодия </p>
+                                </div>
+                            </a>
                         </li>
                         <li class="wow fadeInRight" data-wow-delay="0.1s">
-                            <strong class="fa fa-hospital-o"></strong>
-
-                            <div class="extra-wrap">
-                                <p class="title">Увеличение полового<br>члена</p>
-                            </div>
+                            <a href="index.php?action=increase">
+                                <strong class="fa fa-hospital-o"></strong>
+                                <div class="extra-wrap">
+                                    <p class="title">Увеличение полового<br>члена</p>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -129,8 +137,8 @@ google_api_map_init();
 function google_api_map_init() {
     var map;
     var coordData = new google.maps.LatLng(parseFloat(40.646197), parseFloat(-73.9724068, 14));
-    var markCoord1 = new google.maps.LatLng(parseFloat(40.643180), parseFloat(-73.9874068, 14));
-    var markCoord2 = new google.maps.LatLng(parseFloat(40.6422180), parseFloat(-73.9784068, 14));
+    var markCoord1 = new google.maps.LatLng(parseFloat(55.7708086), parseFloat(37.6350732, 14));
+    var markCoord2 = new google.maps.LatLng(parseFloat(40.6422180), parseFloat(-23.9784068, 14));
     var markCoord3 = new google.maps.LatLng(parseFloat(40.6482180), parseFloat(-73.9724068, 14));
     var markCoord4 = new google.maps.LatLng(parseFloat(40.6442180), parseFloat(-73.9664068, 14));
     var markCoord5 = new google.maps.LatLng(parseFloat(40.6379180), parseFloat(-73.9552068, 14));
@@ -332,7 +340,7 @@ function google_api_map_init() {
     function initialize() {
         var mapOptions = {
             zoom: 14,
-            center: coordData,
+            center: markCoord1,
             scrollwheel: false,
             styles: styleArray
         }

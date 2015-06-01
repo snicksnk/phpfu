@@ -1,0 +1,25 @@
+/* Stuck menu styles
+========================================================*/
+.isStuck {
+  z-index: 99 !important;
+  margin: 0;
+  -webkit-box-shadow: 0 9px 9px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 9px 9px 0 rgba(0, 0, 0, 0.3);
+}
+.isStuck h1.navbar-brand_ {
+  margin-top: 5px !important;
+}
+.isStuck h1.navbar-brand_ a img {
+  width: 50%;
+}
+.isStuck .nav.sf-menu li a {
+  line-height: 42px;
+}
+.isStuck .nav.sf-menu li > ul {
+  top: 42px !important;
+}
+@media only screen and (max-width: 979px) {
+  .isStuck {
+    display: none !important;
+  }
+}
