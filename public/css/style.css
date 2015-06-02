@@ -2423,3 +2423,8 @@ h1.page-title {
       top: -4px;
     display: inline !important;
 }
+
+
+.bottom {
+    text-transform: none;
+}

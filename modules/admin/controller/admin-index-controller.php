@@ -40,7 +40,6 @@ return \module\define(['storage', 'layout'],  function($storage, $layout){
 				}
 
 
-				var_dump($error);
 				return $layout(['_title'=>'Home page', '_isError'=>$error ,'blocks' => $storage,'_content' => 'hello world'], $layoutPath);
 			
 

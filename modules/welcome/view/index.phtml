@@ -34,7 +34,7 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
                                 <strong class="fa fa-heart-o"></strong>
 
                                 <div class="extra-wrap">
-                                    <p class="title">Лечение<br>эректильной дисфункции</p>
+                                    <p class="title">Лечение мужского<br>бесплодия </p>
                                 </div>
                             </a>
                         </li>
@@ -45,8 +45,9 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
                         <li class="wow fadeInRight">
                             <a href="index.php?action=infertitly">
                                 <strong class="fa fa-user-md"></strong>
-                                <div class="extra-wrap">
-                                    <p class="title">Лечение мужского<br>бесплодия </p>
+                               
+                                 <div class="extra-wrap">
+                                    <p class="title">Лечение<br>эректильной дисфункции</p>
                                 </div>
                             </a>
                         </li>
@@ -69,7 +70,7 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
                 <p class="title wow fadeInUp">Возможность оперативного<br>
                     лечения в ведущих лечебных<br>
                     учреждениях в г.<span>М</span>оскве</p>
-                <a href="service.html" class="btn-default btn1 wow fadeInUp">Подробнее</a>
+                <a href="index.php?action=service" class="btn-default btn1 wow fadeInUp">Подробнее</a>
             </div>
         </div>
     </div>
@@ -110,11 +111,12 @@ include(__DIR__.DIRECTORY_SEPARATOR."header.phtml");
                 <div class="col-lg-5 col-md-4 col-sm-6 col-lg-offset-1 maxheight2 wow fadeInUp" data-wow-delay="0.3s">
                     <figure class="pull-left"><img src="img/logo-footer.png" alt=""></figure>
                     <div class="txt">
-                        <p class="title">
+                        <p class="title bottom" style="  text-transform: none;">
                             Чакирян Микаел Ашотович
                         </p>
 
                         <p>Врач уролог-андролог<br/>
+                            <em>Врач ультразвуковой диагностики</em><br/>
                             +79266776879<br/>
                             <a href="mailto:dr.chakiryan@yandex.ru">dr.chakiryan@yandex.ru</a></p>
                     </div>
@@ -138,11 +140,13 @@ function google_api_map_init() {
     var map;
     var coordData = new google.maps.LatLng(parseFloat(40.646197), parseFloat(-73.9724068, 14));
     var markCoord1 = new google.maps.LatLng(parseFloat(55.7708086), parseFloat(37.6350732, 14));
-    var markCoord2 = new google.maps.LatLng(parseFloat(40.6422180), parseFloat(-23.9784068, 14));
-    var markCoord3 = new google.maps.LatLng(parseFloat(40.6482180), parseFloat(-73.9724068, 14));
+    var markCoord2 = new google.maps.LatLng(parseFloat(55.739078), parseFloat(37.495036, 14));
+    var markCoord3 = new google.maps.LatLng(parseFloat(55.7571157), parseFloat(37.5658752, 14));
     var markCoord4 = new google.maps.LatLng(parseFloat(40.6442180), parseFloat(-73.9664068, 14));
     var markCoord5 = new google.maps.LatLng(parseFloat(40.6379180), parseFloat(-73.9552068, 14));
-    var marker;
+    var marker, marker2;
+
+//55.739078,37.495036
 
     var styleArray = [
         {
@@ -339,8 +343,8 @@ function google_api_map_init() {
 
     function initialize() {
         var mapOptions = {
-            zoom: 14,
-            center: markCoord1,
+            zoom: 13,
+            center: markCoord3,
             scrollwheel: false,
             styles: styleArray
         }
@@ -352,11 +356,27 @@ function google_api_map_init() {
         });
 
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        marker = new google.maps.Marker({
+        
+
+
+        marker22 = new google.maps.Marker({
             map: map,
             position: markCoord1,
             icon: markerIcon
         });
+
+
+        marker = new google.maps.Marker({
+            map: map,
+            position: markCoord2,
+            icon: markerIcon
+        });
+
+
+
+
+
+        
 
         var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
@@ -384,7 +404,7 @@ function google_api_map_init() {
         google.maps.event.addDomListener(window, 'resize', function () {
 
             map.setCenter(coordData);
-s
+
             var center = map.getCenter();
         });
     }
